@@ -1,35 +1,61 @@
 console.log("This is a rock,paper and scissors game");
 console.log("Play five rounds to see who the winner is , YOU or the AI hehe");
+
 function playround(humaninput,aiip){
-    let hscore=0;
-    let aiscore=0;
-    while(5--){
-        if(humaninput==aiip){
-            hscore++;
-        }
-        else{
-            aiscore++;
-        }
+    if(humaninput==aiip){
+        return "Tie";
     }
-    if(hscore>=aiscore){
-        console.log("yay human you won wohoooo");
+    else if((humaninput=="ROCK"&&aiip=="SCISSORS")||(humaninput=="PAPER"&&aiip=="ROCK")||(humaninput=="SCISSORS"&&aiip=="PAPER")){
+        return "h";
     }
     else{
-        console.log("BETTER LUCK NEXT TIME LOL");
+        return "a";
+    }
+}
+function playgame(){
+    let hscore=0;
+    let aiscore=0;
+    let tier=0;
+    let n=5;
+    while(n--){
+        const humanip=humaninput();
+        const aiip=aiinput();
+        const result =playround(humanip,aiip);
+        if(result=="h"){
+            hscore++;
+            console.log("congo you have won this round");
+        }
+        else if(result=="a"){
+            aiscore++;
+            console.log("AI won this round");
+        }
+        else{
+            tier++;
+            console.log("THIS round was a tie");
+        }
+        
+    }
+    if(hscore>aiscore&&hscore>tier){
+        console.log("congrats human you have won the game");
+    }
+    else if(aiscore>hscore&&aiscore>tier){
+        console.log("AI has won the game ");
+    }
+    else{
+        console.log("Most rounds were a tie so I declare this game as a tie");
     }
 }
 function humaninput(){
-    let input=prompt("Enter either ROCK , PAPER or SCISSORS and goodluck");
-    input.toUpperCase;
-    while(input!="ROCK"||input!="PAPER"||input!="SCISSORS"){
+    let input=prompt("Enter either ROCK , PAPER or SCISSORS and goodluck").toUpperCase();
+    while(input!="ROCK"&&input!="PAPER"&&input!="SCISSORS"){
         console.log("INVALID INPUT, PLEASE ENTER A VALID INPUT");
+        let input=prompt("Enter either ROCK , PAPER or SCISSORS and goodluck").toUpperCase();
     }
-    else{
-        return input;
-    }
+    return input;
+    
 }
 function aiinput(){
-    int val= Math.floor(Math.random()*3);
+    let val= Math.floor(Math.random()*3);
     if(val==0){
         return "ROCK";
     }
@@ -40,6 +66,5 @@ function aiinput(){
         return "SCISSORS";
     }
 }
-const humanip=humaninput();
-const aiip=aiinput();
-playround(humanip,aiip);
+
+playgame()
