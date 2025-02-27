@@ -35,10 +35,10 @@ function playgame(){
         }
         
     }
-    if(hscore>aiscore&&hscore>tier){
+    if(hscore>aiscore){
         console.log("congrats human you have won the game");
     }
-    else if(aiscore>hscore&&aiscore>tier){
+    else if(aiscore>hscore){
         console.log("AI has won the game ");
     }
     else{
